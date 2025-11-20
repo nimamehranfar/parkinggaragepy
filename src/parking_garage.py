@@ -8,8 +8,8 @@ try:
     import SDL_DS3231
     DEPLOYMENT = True
 except:
-    import mock.GPIO as GPIO
-    import mock.SDL_DS3231 as SDL_DS3231
+    import mock_folder.GPIO as GPIO
+    import mock_folder.SDL_DS3231 as SDL_DS3231
 
 
 class ParkingGarage:
