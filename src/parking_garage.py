@@ -1,3 +1,4 @@
+import math
 import time
 from datetime import datetime
 
@@ -47,8 +48,11 @@ class ParkingGarage:
         return int(self.check_occupancy(self.INFRARED_PIN1))+int(self.check_occupancy(self.INFRARED_PIN2))+int(self.check_occupancy(self.INFRARED_PIN3))
 
     def calculate_parking_fee(self, entry_time: datetime) -> float:
-        # To be implemented
-        pass
+        exit_time = self.rtc.read_datetime()
+        difference = exit_time - entry_time
+        hours=math.ceil(difference.total_seconds()/3600)
+        return hours*2.5
+
 
     def open_garage_door(self) -> None:
         # To be implemented
