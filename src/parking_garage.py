@@ -39,6 +39,8 @@ class ParkingGarage:
         self.red_light_on = False
 
     def check_occupancy(self, pin: int) -> bool:
+        if pin not in [self.INFRARED_PIN1,self.INFRARED_PIN2,self.INFRARED_PIN3]:
+            raise  ParkingGarageError
         return GPIO.input(pin)
 
     def get_number_occupied_spots(self) -> int:
