@@ -21,8 +21,15 @@ class TestParkingGarage(TestCase):
         self.assertRaises(ParkingGarageError, garage.check_occupancy, garage.LED_PIN)
 
     @patch.object(GPIO, "input")
-    def test_get_number_occupied_spots(self,distance_sensor):
+    def test_get_number_occupied_spots(self,distance_sensor: Mock):
         distance_sensor.side_effect = [True,False,True]
         garage = ParkingGarage()
         number_of_occupied_spots = garage.get_number_occupied_spots()
         self.assertEqual(2, number_of_occupied_spots)
+
+    @patch.object(SDL_DS3231, "read_datetime")
+    def test_calculate_parking_fee(self,rtc: Mock):
+        rtc.return_value = datetime(2025,11,20,15,24)
+        garage = ParkingGarage()
+        fee = garage.calculate_parking_fee(datetime(2025,11,20,12,30))
+        self.assertEqual(7.50, fee)
