@@ -44,8 +44,7 @@ class ParkingGarage:
         return GPIO.input(pin)
 
     def get_number_occupied_spots(self) -> int:
-        # To be implemented
-        pass
+        return int(self.check_occupancy(self.INFRARED_PIN1))+int(self.check_occupancy(self.INFRARED_PIN2))+int(self.check_occupancy(self.INFRARED_PIN3))
 
     def calculate_parking_fee(self, entry_time: datetime) -> float:
         # To be implemented

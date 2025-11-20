@@ -20,6 +20,7 @@ class TestParkingGarage(TestCase):
         garage = ParkingGarage()
         self.assertRaises(ParkingGarageError, garage.check_occupancy, garage.LED_PIN)
 
+    @patch.object(GPIO, "input")
     def test_get_number_occupied_spots(self,distance_sensor):
         distance_sensor.side_effect = [True,False,True]
         garage = ParkingGarage()
