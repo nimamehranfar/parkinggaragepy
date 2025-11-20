@@ -51,7 +51,10 @@ class ParkingGarage:
         exit_time = self.rtc.read_datetime()
         difference = exit_time - entry_time
         hours=math.ceil(difference.total_seconds()/3600)
-        return hours*2.5
+        fee=hours*2.5
+        if entry_time.weekday() in [5,6]:
+            fee *=1.25
+        return fee
 
 
     def open_garage_door(self) -> None:
