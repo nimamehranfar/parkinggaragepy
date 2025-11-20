@@ -62,8 +62,8 @@ class ParkingGarage:
         self.door_open=True
 
     def close_garage_door(self) -> None:
-        # To be implemented
-        pass
+        self.change_servo_angle(2)
+        self.door_open=False
 
     def turn_on_red_light(self) -> None:
         # To be implemented

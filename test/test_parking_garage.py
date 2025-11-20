@@ -60,6 +60,7 @@ class TestParkingGarage(TestCase):
     @patch.object(ParkingGarage, "change_servo_angle")
     def test_close_garage_door(self, motor: Mock):
         garage = ParkingGarage()
+        garage.door_open = True
         garage.close_garage_door()
         self.assertFalse(garage.door_open)
         motor.assert_called_once_with(2)
