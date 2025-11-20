@@ -58,8 +58,8 @@ class ParkingGarage:
 
 
     def open_garage_door(self) -> None:
-        # To be implemented
-        pass
+        self.change_servo_angle(12)
+        self.door_open=True
 
     def close_garage_door(self) -> None:
         # To be implemented
