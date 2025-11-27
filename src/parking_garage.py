@@ -56,7 +56,6 @@ class ParkingGarage:
             fee *=1.25
         return fee
 
-
     def open_garage_door(self) -> None:
         self.change_servo_angle(12)
         self.door_open=True
@@ -74,7 +73,10 @@ class ParkingGarage:
         self.red_light_on=False
 
     def manage_red_light(self) -> None:
-        pass
+        if self.get_number_occupied_spots() == 3:
+            self.turn_on_red_light()
+        else:
+            self.turn_off_red_light()
 
     def change_servo_angle(self, duty_cycle):
         """
